@@ -10,8 +10,7 @@ SRCS =		main.cpp \
 
 OBJS =		$(SRCS:.cpp=.o)
 
-HEADERS =	Animal.hpp \
-			Bureaucrat.hpp
+HEADERS =	Bureaucrat.hpp
 
 # ANSI color codes
 YELLOW = \033[1;33m
