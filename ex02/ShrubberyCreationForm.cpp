@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:42:21 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 20:07:32 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:26:16 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 ShrubberyCreationForm::ShrubberyCreationForm()
 	: AForm("ShrubberyCreationForm", 145, 137), _target("DefaultTarget")
 {
-	std::cout << "ShrubberyCreationForm Default constructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << _target << " constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 	: AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm constructor called for target: " << _target << std::endl;
+	std::cout << "ShrubberyCreationForm " << _target << " constructor called for target: " << _target << std::endl;
 
 }
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << _target << " destructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm(other), _target(other._target)
 {
-	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << _target << " copy constructor called" << std::endl;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-	std::cout << "ShrubberyCreationForm copy assignment operator called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << _target << " copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		AForm::operator=(other);

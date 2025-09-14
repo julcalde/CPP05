@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:16:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 20:06:34 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:33:40 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Bureaucrat
 		void incrementGrade();
 		void decrementGrade();
 		void signForm(AForm& form);
+		void executeForm(AForm const & form) const;
 
 		class GradeTooHighException : public std::exception
 		{

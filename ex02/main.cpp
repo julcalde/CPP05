@@ -6,78 +6,49 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 14:03:05 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 19:00:07 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:45:45 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main(void)
 {
+	std::srand(std::time(0)); // this line is to seed the random number generator for robotomy requests
 	try
 	{
-		// this section will work without exceptions
-		
-		Bureaucrat aref("Aref", 50);
-		Form taxForm("TaxForm", 60, 40);
-		std::cout << aref << std::endl;
-		std::cout << taxForm << std::endl;
-		aref.signForm(taxForm);
-		std::cout << taxForm << std::endl;
+		Bureaucrat tizio("Tizio", 5);
+		ShrubberyCreationForm shrub("npc");
+		RobotomyRequestForm robot("Terminator");
+		PresidentialPardonForm cavalier("Silvio");
 		std::cout << std::endl;
+
+		std::cout << tizio << std::endl;
+		std::cout << shrub << std::endl;
+		std::cout << robot << std::endl;
+		std::cout << cavalier << "\n" << std::endl;
 		
-		// this section will throw GradeTooLowException when signing
-		
-		Bureaucrat khaled("Khaled", 70);
-		khaled.signForm(taxForm);
+		tizio.signForm(shrub);
+		tizio.signForm(robot);
+		tizio.signForm(cavalier);
+		std::cout << std::endl;
+
+		tizio.executeForm(shrub);
+		tizio.executeForm(robot);
+		tizio.executeForm(cavalier);
+		std::cout << std::endl;
+
+		Bureaucrat caio("Caio", 140);
+		caio.executeForm(shrub); // should fail because grade too low
+		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-	std::cout << std::endl;
-	
-	// will throw exceptions when creating forms with invalid grades
-	try
-	{
-		Form invalidForm1("InvalidForm1", 0, 151);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-	
-	try
-	{
-		Form invalidForm2("InvalidForm2", 151, 0);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-	
-	try
-	{
-		Form invalidForm3("InvalidForm3", 40, 151);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-	
-	try
-	{
-		Form invalidForm4("InvalidForm4", 151, 40);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
 	
 	return (0);
 }
