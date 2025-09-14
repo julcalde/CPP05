@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 14:41:43 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 18:29:13 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:30:40 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include "Bureaucrat.hpp"
 # include <iostream>
@@ -20,7 +20,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
 		const std::string _name;
@@ -28,17 +28,21 @@ class Form
 		const int _execGrade;
 		bool _isSigned;
 
-	public:
-		Form(const std::string& name, int signGrade, int execGrade);
-		~Form();
-		Form(const Form& other);
-		Form& operator=(const Form& other);
+	protected:
+		AForm(); // Default constructor is protected to prevent direct instantiation
 
-		const std::string getName() const;
+	public:
+		AForm(const std::string& name, int signGrade, int execGrade);
+		virtual ~AForm();
+		AForm(const AForm& other);
+		AForm& operator=(const AForm& other);
+
+		const std::string& getName() const;
 		int getSignGrade() const;
 		int getExecGrade() const;
 		bool getIsSigned() const;
 		void beSigned(const Bureaucrat& bureaucrat);
+		virtual void execute(Bureaucrat const & executor) const = 0; // Pure virtual function
 		
 		class GradeTooHighException : public std::exception
 		{
@@ -51,8 +55,14 @@ class Form
 			public:
 				virtual const char* what() const throw();
 		};
+		
+		class NotSignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+std::ostream& operator<<(std::ostream& os, const AForm& form);
 
 #endif
