@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 14:41:43 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 18:29:13 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:26:55 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Form
 		Form(const Form& other);
 		Form& operator=(const Form& other);
 
-		const std::string getName() const;
+		const std::string& getName() const;
 		int getSignGrade() const;
 		int getExecGrade() const;
 		bool getIsSigned() const;

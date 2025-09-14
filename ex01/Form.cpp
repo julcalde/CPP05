@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 14:42:35 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 18:57:47 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:27:20 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Form& Form::operator=(const Form& other)
 	return(*this);
 }
 
-const std::string Form::getName() const
+const std::string& Form::getName() const
 {
 	return (_name);
 }
