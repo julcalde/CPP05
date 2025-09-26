@@ -6,49 +6,47 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 14:03:05 by julcalde          #+#    #+#             */
-/*   Updated: 2025/09/14 21:45:45 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:57:47 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
-	std::srand(std::time(0)); // this line is to seed the random number generator for robotomy requests
-	try
+	std::srand(std::time(0));
+    Intern intern;
+    Bureaucrat bob("Bob", 5);
+    AForm* form;
+
+    form = intern.makeForm("robotomy request", "Bender");
+    if (form)
 	{
-		Bureaucrat tizio("Tizio", 5);
-		ShrubberyCreationForm shrub("npc");
-		RobotomyRequestForm robot("Terminator");
-		PresidentialPardonForm cavalier("Silvio");
-		std::cout << std::endl;
-
-		std::cout << tizio << std::endl;
-		std::cout << shrub << std::endl;
-		std::cout << robot << std::endl;
-		std::cout << cavalier << "\n" << std::endl;
-		
-		tizio.signForm(shrub);
-		tizio.signForm(robot);
-		tizio.signForm(cavalier);
-		std::cout << std::endl;
-
-		tizio.executeForm(shrub);
-		tizio.executeForm(robot);
-		tizio.executeForm(cavalier);
-		std::cout << std::endl;
-
-		Bureaucrat caio("Caio", 140);
-		caio.executeForm(shrub); // should fail because grade too low
-		std::cout << std::endl;
-	}
-	catch (std::exception& e)
+        bob.signForm(*form);
+        bob.executeForm(*form);
+        delete form;
+    }
+	std::cout << std::endl;
+    form = intern.makeForm("shrubbery creation", "home");
+    if (form)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	
+        bob.signForm(*form);
+        bob.executeForm(*form);
+        delete form;
+    }
+	std::cout << std::endl;
+    form = intern.makeForm("presidential pardon", "Ford");
+    if (form)
+	{
+        bob.signForm(*form);
+        bob.executeForm(*form);
+        delete form;
+    }
+	std::cout << std::endl;
+    form = intern.makeForm("invalid form", "Nobody"); // Should print error
+    if (form)
+        delete form;
+
 	return (0);
 }
